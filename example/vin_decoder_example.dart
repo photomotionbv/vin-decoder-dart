@@ -1,5 +1,5 @@
-import 'package:custom_vin_decoder/nhtsa.dart';
-import 'package:custom_vin_decoder/vin_decoder.dart';
+import 'package:pm_vin_decoder/nhtsa.dart';
+import 'package:pm_vin_decoder/vin_decoder.dart';
 
 void main() async {
   var vin = VIN(vin: 'WP0ZZZ99ZTS392124', extended: true);

@@ -1,4 +1,4 @@
-name: custom_vin_decoder
+name: pm_vin_decoder
 description:
   Dart library for working with Vehicle Identification Numbers (VINs) based on ISO 3779:2009 and
   World Manufacturer Identifiers (WMIs) based on ISO 3780:2009, enriched by NHTSA data.
@@ -12,8 +12,8 @@ environment:
 
 dependencies:
   meta: ^1.8.0
-  basic_utils: ^3.4.0
-  http: ^0.13.3
+  basic_utils: ^5.7.0
+  http: ^1.2.1
   random_string: ^2.2.0-nullsafety
 
 dev_dependencies:

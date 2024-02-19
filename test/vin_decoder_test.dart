@@ -1,4 +1,4 @@
-import 'package:custom_vin_decoder/vin_decoder.dart';
+import 'package:pm_vin_decoder/vin_decoder.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -31,7 +31,6 @@ void main() {
   });
 
   group('2-character WMI Manufacturer Test', () {
-
     late VIN vin;
 
     setUp(() {
