@@ -1,3 +1,6 @@
+## 0.2.2
+- Checkdigit validation.
+
 ## 0.2.1
 - Migrated completely to nullsafety
 
