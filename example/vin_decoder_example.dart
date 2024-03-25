@@ -13,7 +13,7 @@ void main() async {
   print("Assembly plant is " + vin.assemblyPlant());
   print("Manufacturer is " + (vin.getManufacturer() ?? ""));
   print("Year is " + vin.getYear().toString());
-  print("Region is " + vin.getRegion());
+  print("Region is " + (vin.getRegion() ?? ""));
   print("VIN string is " + vin.toString());
 
   // The following calls are to the NHTSA DB, and are carried out asynchronously

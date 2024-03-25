@@ -1,3 +1,6 @@
+## 0.3.0
+- Removed "Unknown" and "0" return types. They are now NULL
+
 ## 0.2.2
 - Checkdigit validation.
 

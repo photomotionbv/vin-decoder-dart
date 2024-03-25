@@ -54,7 +54,7 @@ class VIN {
   }
 
   /// Obtain the 2-character region code for the manufacturing region.
-  String getRegion() {
+  String? getRegion() {
     if (RegExp(r"[A-H]", caseSensitive: false).hasMatch(this.number[0])) {
       return "AF";
     }
@@ -73,7 +73,7 @@ class VIN {
     if (RegExp(r"[8-9]", caseSensitive: false).hasMatch(this.number[0])) {
       return "SA";
     }
-    return "Unknown";
+    return null;
   }
 
   /// Get the full name of the vehicle manufacturer as defined by the [wmi].
@@ -122,7 +122,7 @@ class VIN {
 
   /// Get the fuel type of the vehicle from the NHTSA database if [extended] mode
   /// is enabled.
-  Future<int> getFuelTypeAsync() async {
+  Future<int?> getFuelTypeAsync() async {
     await _fetchExtendedVehicleInfo();
     String fuelType = this._vehicleInfo['FuelTypePrimary'] as String? ?? "";
     Map<String, int> fuels =
@@ -139,46 +139,45 @@ class VIN {
     fuels["M85"] = 13;
     fuels["M100"] = 14;
     fuels["FFV"] = 15;
-    int fuelTypeNumber = fuels[fuelType] ?? 0;
-    return fuelTypeNumber;
+    return fuels[fuelType];
   }
 
   /// Get the Make of the vehicle from the NHTSA database if [extended] mode
   /// is enabled.
-  Future<String> getMakeAsync() async {
+  Future<String?> getMakeAsync() async {
     await _fetchExtendedVehicleInfo();
-    return this._vehicleInfo['Make'] as String? ?? "";
+    return this._vehicleInfo['Make'] as String?;
   }
 
   /// Get the Make ID of a vehicle from the NHTSA database if the [extended] mode is enabled
-  Future<int> getMakeIdAsync() async {
+  Future<int?> getMakeIdAsync() async {
     await _fetchExtendedVehicleInfo();
     return this._vehicleInfo.keys.contains("MakeID")
         ? int.parse(this._vehicleInfo["MakeID"])
-        : 0;
+        : null;
   }
 
   /// Get the Model of the vehicle from the NHTSA database if [extended] mode is enabled.
-  Future<String> getModelAsync() async {
+  Future<String?> getModelAsync() async {
     await _fetchExtendedVehicleInfo();
     return (this._vehicleInfo.keys.contains("Model")
-        ? this._vehicleInfo['Model'] as String? ?? "Unknown"
-        : "Unknown");
+        ? this._vehicleInfo['Model'] as String?
+        : null);
   }
 
-  Future<String> getModelIdAsync() async {
+  Future<String?> getModelIdAsync() async {
     await _fetchExtendedVehicleInfo();
     return (this._vehicleInfo.keys.contains("ModelID")
-        ? this._vehicleInfo['ModelID'] as String? ?? "Unknown"
-        : "Unknown");
+        ? this._vehicleInfo['ModelID'] as String?
+        : null);
   }
 
   /// Get the Vehicle Type from the NHTSA database if [extended] mode is enabled.
-  Future<String> getVehicleTypeAsync() async {
+  Future<String?> getVehicleTypeAsync() async {
     await _fetchExtendedVehicleInfo();
     return (this._vehicleInfo.keys.contains("VehicleType")
-        ? this._vehicleInfo['VehicleType'] as String? ?? "0"
-        : "0");
+        ? this._vehicleInfo['VehicleType'] as String?
+        : null);
   }
 
   @override
