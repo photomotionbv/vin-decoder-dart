@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:random_string/random_string.dart';
 import 'manufacturers.dart';
 import 'year_map.dart';
+import 'package:http/http.dart' as http;
 
 // VINs do not use the letters O, I, or Q to avoid confusion with numbers
 const _vinChars = "ABCDEFGHJKLMNPRSTUVWXYZ0123456789";
@@ -45,5 +46,15 @@ class VINGenerator {
   /// Generate a random VIN
   String generate() {
     return generateWmi() + generateVds() + generateVis();
+  }
+
+  Future<String?> getRealVin() async {
+    final response =
+        await http.get(Uri.parse('https://randomvin.com/getvin.php?type=real'));
+    if (response.statusCode == 200) {
+      return response.body;
+    } else {
+      return null;
+    }
   }
 }
